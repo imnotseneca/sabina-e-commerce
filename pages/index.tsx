@@ -2,7 +2,18 @@ import { GetStaticProps } from 'next';
 import React from 'react';
 import { Product } from "../product/types"
 import api from "../product/api"
-import {Button, Flex, Grid, Link, Stack, Text } from '@chakra-ui/react';
+import {Button, ChakraProvider, Flex, Grid, Link, Stack, Text } from '@chakra-ui/react';
+
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure
+} from '@chakra-ui/react'
 
 interface Props {
   products: Product[],
@@ -24,8 +35,6 @@ const IndexRoute: React.FC<Props> = ({products}) => {
               (message, product) => message.concat(`* ${product.title} - ${parseCurrency(product.price)}\n`), ``)
             .concat(`\nTotal: ${parseCurrency(cart.reduce((total, product) => total + product.price, 0))}`)
   }, [cart])
-
-  
 
   return (
     <Stack spacing={6}>
@@ -58,7 +67,10 @@ const IndexRoute: React.FC<Props> = ({products}) => {
       )}
     </Stack>
   );
-  }
+
+}
+
+
 
 
 export const getStaticProps: GetStaticProps = async () => {

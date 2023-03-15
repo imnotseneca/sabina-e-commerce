@@ -29,7 +29,7 @@ function parseCurrency(value: number): string {
 
 const IndexRoute: React.FC<Props> = ({products}) => {
   const [cart, setCart] = React.useState<Product[]>([])
-  const [selectedImage, setSelectedImage] = React.useState<string>(null)
+  const [selectedImage, setSelectedImage] = React.useState<string>('')
   const text = React.useMemo(
     () => {
     return cart
@@ -67,7 +67,7 @@ const IndexRoute: React.FC<Props> = ({products}) => {
           size="lg" 
           href={`https://wa.me/542346569585?text=${encodeURIComponent(text)}`} 
           colorScheme='whatsapp'
-          leftIcon={<Image src={"https://icongr.am/fontawesome/whatsapp.svg?size=32&color=ffffff"}/>}>
+          leftIcon={<Image src={"https://icongr.am/fontawesome/whatsapp.svg?size=32&color=ffffff"}  alt="whatsapp logo"/>}>
             Completar pedido ({cart.length} productos)
           </Button>
         </Flex>
@@ -87,7 +87,7 @@ const IndexRoute: React.FC<Props> = ({products}) => {
       top={0} 
       left={0} 
       width='100%'
-      onClick={() => setSelectedImage(null)}>
+      onClick={() => setSelectedImage('')}>
         <Image key="image" src={selectedImage} alt="product photo">
 
         </Image>
